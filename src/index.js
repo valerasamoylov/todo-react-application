@@ -38,7 +38,6 @@ class AppRouter extends React.Component {
       <Router>
         <div className="app">
           <Header
-            className="main-nav"
             style={{
               textAlign: "right",
               marginBottom: "50px",

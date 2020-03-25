@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container } from "../../styles/styled";
 import { Typography } from "antd";
-
+import { TaskList } from "./TaskList";
 const { Title } = Typography;
 
 class Home extends React.Component {
@@ -10,6 +10,11 @@ class Home extends React.Component {
     return (
       <Container>
         <Title>Welcome to todo app!</Title>
+        {this.props.user && (
+          <div>
+            <TaskList />
+          </div>
+        )}
         {!this.props.user && (
           <div>
             <p>

@@ -51,3 +51,42 @@ export const StyledButtonSubmit = styled.button`
 export const ErrorMessage = styled.p`
   color: red;
 `;
+
+export const ChangeTodo = styled.input`
+  outline: none;
+  border: none;
+  :hover {
+    outline: none;
+  }
+`;
+export const CheckTodo = styled.input`
+  margin-right: 5px;
+`;
+export const DeleteTodo = styled.span`
+  color: rgb(192, 0, 0);
+  float: right;
+  margin-right: 15px;
+  cursor: pointer;
+  display: none;
+  font-weight: bold;
+`;
+export const TaskTodo = styled.div`
+  margin-left: 3px;
+  margin-top: 3px;
+  padding: 4px;
+  :hover {
+    background: lightgray;
+  }
+  &:hover ${DeleteTodo} {
+    display: inline-block;
+  }
+  &.done {
+    text-decoration: line-through;
+  }
+  &:hover ${ChangeTodo} {
+    background: lightgray;
+    :hover {
+      background: lightgray;
+    }
+  }
+`;
