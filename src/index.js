@@ -1,19 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  withRouter
-} from "react-router-dom";
-import firebase, { auth, provider } from "./firebase.js";
-
-import "./index.css";
-
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import firebase, { auth } from "./firebase.js";
+import { Layout } from "antd";
+import { StyledLink } from "./styles/styled";
 import Home from "./components/Home/Home";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+
+const { Header } = Layout;
 
 class AppRouter extends React.Component {
   constructor(props) {
@@ -42,20 +37,26 @@ class AppRouter extends React.Component {
     return (
       <Router>
         <div className="app">
-          <nav className="main-nav">
+          <Header
+            className="main-nav"
+            style={{
+              textAlign: "right",
+              marginBottom: "50px",
+              padding: "0 25px"
+            }}
+          >
             {!this.state.user && (
               <div>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
+                <StyledLink to="/login">Login</StyledLink>
+                <StyledLink to="/register">Register</StyledLink>
               </div>
             )}
-
             {this.state.user && (
-              <a href="#!" onClick={this.logOutUser}>
+              <StyledLink href="#!" onClick={this.logOutUser}>
                 Logout
-              </a>
+              </StyledLink>
             )}
-          </nav>
+          </Header>
 
           <Switch>
             <Route
@@ -65,16 +66,11 @@ class AppRouter extends React.Component {
             />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
-            <Route component={NoMatch} />
           </Switch>
         </div>
       </Router>
     );
   }
 }
-
-const NoMatch = ({ location }) => (
-  <div>No route match for {location.pathname}</div>
-);
 
 ReactDOM.render(<AppRouter />, document.getElementById("root"));

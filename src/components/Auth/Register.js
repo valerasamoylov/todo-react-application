@@ -1,9 +1,15 @@
 import React from "react";
 import firebase from "../../firebase.js";
 import { Link } from "react-router-dom";
+import { Typography } from "antd";
+import {
+  Container,
+  StyledInput,
+  StyledButtonSubmit,
+  ErrorMessage
+} from "../../styles/styled";
 
-import "./Auth.css";
-import Login from "./Login";
+const { Title } = Typography;
 
 class Register extends React.Component {
   constructor(props) {
@@ -45,43 +51,55 @@ class Register extends React.Component {
   render() {
     const { email, username, password, error } = this.state;
     return (
-      <div className="auth--container">
-        <h1>Register your account</h1>
-        {error && <p className="error-message">{error.message}</p>}
+      <Container>
+        <Title>Register your account</Title>
+        {error && <ErrorMessage>{error.message}</ErrorMessage>}
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input
+          <label
+            htmlFor="username"
+            style={{ display: "block", textAlign: " left" }}
+          >
+            Username
+          </label>
+          <StyledInput
             type="text"
             name="username"
             id="username"
             value={username}
             onChange={this.handleChange}
           />
-          <label htmlFor="email">Email address</label>
-          <input
+          <label
+            htmlFor="email"
+            style={{ display: "block", textAlign: " left" }}
+          >
+            Email address
+          </label>
+          <StyledInput
             type="text"
             name="email"
             id="email"
             value={email}
             onChange={this.handleChange}
           />
-          <label htmlFor="password">Choose a password</label>
-          <input
+          <label
+            htmlFor="password"
+            style={{ display: "block", textAlign: " left" }}
+          >
+            Choose a password
+          </label>
+          <StyledInput
             type="password"
             name="password"
             id="password"
             value={password}
             onChange={this.handleChange}
           />
-          <button className="general-submit" children="Get Started" />
+          <StyledButtonSubmit children="Get Started" />
           <p>
-            Already have an account?{" "}
-            <Link className="login-btn" to="/login">
-              Login here
-            </Link>
+            Already have an account? <Link to="/login">Login here</Link>
           </p>
         </form>
-      </div>
+      </Container>
     );
   }
 }

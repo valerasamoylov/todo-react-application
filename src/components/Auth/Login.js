@@ -1,9 +1,15 @@
 import React from "react";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import firebase from "../../firebase";
+import { Typography } from "antd";
+import {
+  Container,
+  StyledInput,
+  StyledButtonSubmit,
+  ErrorMessage
+} from "../../styles/styled";
 
-import "./Auth.css";
-import Register from "./Register";
+const { Title } = Typography;
 
 class Login extends React.Component {
   constructor(props) {
@@ -39,22 +45,31 @@ class Login extends React.Component {
   render() {
     const { email, password, error } = this.state;
     return (
-      <div className="auth--container">
-        <h1>Login</h1>
+      <Container>
+        <Title>Login</Title>
         <p className="intro-text">Login to access your account</p>
-        {error && <p className="error-message">{error.message}</p>}
+        {error && <ErrorMessage>{error.message}</ErrorMessage>}
         <form className="login-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email address</label>
-          <input
+          <label
+            htmlFor="email"
+            style={{ display: "block", textAlign: " left" }}
+          >
+            Email address
+          </label>
+          <StyledInput
             type="email"
             name="email"
             id="email"
-            placeholder="Email"
             value={email}
             onChange={this.handleChange}
           />
-          <label htmlFor="password">Password</label>
-          <input
+          <label
+            htmlFor="password"
+            style={{ display: "block", textAlign: " left" }}
+          >
+            Password
+          </label>
+          <StyledInput
             type="password"
             name="password"
             id="password"
@@ -62,15 +77,12 @@ class Login extends React.Component {
             value={password}
             onChange={this.handleChange}
           />
-          <button className="general-submit">Log in</button>
+          <StyledButtonSubmit>Log in</StyledButtonSubmit>
           <p>
-            Don't have an account yet?{" "}
-            <Link className="login-btn" to="/register">
-              Register here
-            </Link>
+            Don't have an account yet? <Link to="/register">Register here</Link>
           </p>
         </form>
-      </div>
+      </Container>
     );
   }
 }
