@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.8",
     "@material-ui/icons": "^4.9.1",
-    "firebase": "^5.11.1",
+    "firebase": "^10.9.0",
     "formik": "^1.5.4",
     "jss-plugin-template": "^10.1.1",
     "react": "^16.8.6",
